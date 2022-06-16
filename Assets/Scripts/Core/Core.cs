@@ -27,7 +27,7 @@ public class Core : ITimeWarp
     private void Ship_OnShoot(Bullet bullet)
     {
         Bullets.Add(bullet);
-        bullet.OnDestroy += (bullet) => Bullets.Remove(bullet);
+        bullet.OnClear += (bullet) => Bullets.Remove(bullet);
     }
 
     public void AddTime(float time)
@@ -41,8 +41,9 @@ public class Core : ITimeWarp
 
     public void ClearBullets()
     {
-        while (Bullets.Count != 0)
-            Bullets[0].Destroy();
+        foreach (var item in Bullets)
+            item.Clear();
+        Bullets.Clear();
     }
 
     public void AddScore(int score)

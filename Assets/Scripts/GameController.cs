@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public static GameController Instance;
-
     public bool IsGameOver;
 
     public Core core;
@@ -18,9 +16,8 @@ public class GameController : MonoBehaviour
 
     public GameOverPanel gameOverPanel;
     public EnemysController enemysController;
-    void Awake()
+    void Start()
     {
-        Instance = this;
         NewGame();
     }
 
@@ -51,10 +48,10 @@ public class GameController : MonoBehaviour
         switch (bullet.bulletType)
         {
             case BulletType.gun:
-                Instantiate(bulletPrefub, bullet.Position, Quaternion.Euler(0,0, bullet.Rotation * 180 / Mathf.PI), panelBullets).GetComponent<BulletController>().SetBullet(bullet);
+                Instantiate(bulletPrefub, bullet.Position, Quaternion.Euler(0, 0, bullet.Rotation * 180 / Mathf.PI), panelBullets).GetComponent<BulletController>().SetBullet(bullet);
                 break;
             case BulletType.laser:
-                Instantiate(laserPrefub, bullet.Position, Quaternion.Euler(0,0,bullet.Rotation * 180 / Mathf.PI), panelBullets).GetComponent<BulletController>().SetBullet(bullet);
+                Instantiate(laserPrefub, bullet.Position, Quaternion.Euler(0, 0, bullet.Rotation * 180 / Mathf.PI), panelBullets).GetComponent<BulletController>().SetBullet(bullet);
                 break;
             default:
                 Debug.LogError("Такого патрона не существует");

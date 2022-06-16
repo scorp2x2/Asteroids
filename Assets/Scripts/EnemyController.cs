@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     public virtual void SetEnemy(Enemy enemy)
     {
         this.enemy = enemy;
-        enemy.OnDestroyEnemy += Enemy_OnDestroyEnemy;
+        enemy.OnDestroyUIEnemy += Enemy_OnDestroyEnemy;
     }
 
     private void Enemy_OnDestroyEnemy(Enemy enemy)
@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
         }
         if (collision.tag == "Ship")
         {
-            GameController.Instance.GameOver();
+           FindObjectOfType<GameController>().GameOver();
         }
     }
 

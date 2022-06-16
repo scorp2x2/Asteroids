@@ -17,7 +17,6 @@ public class AsteroidController : EnemyController
 
     public void Setlevel(int lvl)
     {
-        HideAll();
         int index = Random.Range(0, 3);
         switch (lvl)
         {
@@ -33,15 +32,5 @@ public class AsteroidController : EnemyController
             default:
                 break;
         }
-    }
-
-    public void HideAll()
-    {
-        foreach (var item in largeAsteroids)
-            item.SetActive(false);
-        foreach (var item in smallAsteroids)
-            item.SetActive(false);
-        foreach (var item in mediumAsteroids)
-            item.SetActive(false);
     }
 }

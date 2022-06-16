@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour
     public void SetBullet(Bullet bullet)
     {
         this.bullet = bullet;
-        bullet.OnDestroy += Bullet_OnDestroy;
+        bullet.OnDestroyUI += Bullet_OnDestroy;
     }
 
     private void Bullet_OnDestroy(Bullet bullet)

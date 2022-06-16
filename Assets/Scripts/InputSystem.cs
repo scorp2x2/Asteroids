@@ -1,46 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputSystem : MonoBehaviour
 {
-    public float speedRotation;
-    public float speedMove;
+    public GameController gameController;
+
+    float speedRotation;
+    float speedMove;
 
     // Update is called once per frame
     void Update()
     {
-        if (GameController.Instance.IsGameOver) return;
+        if (gameController.IsGameOver) return;
 
-        if (Input.GetKey(KeyCode.A))
-            Rotate(-speedRotation);
-        if (Input.GetKey(KeyCode.D))
-            Rotate(speedRotation);
-        if (Input.GetKey(KeyCode.W))
-            Move(speedMove);
-        if (Input.GetKeyDown(KeyCode.Space))
-            ShootGun();
-        if (Input.GetKeyDown(KeyCode.F))
-            ShootLaser();
+        Rotate(speedRotation);
+        Move(speedMove);
+    }
+
+    public void OnRotate(InputValue input)
+    {
+        speedRotation = input.Get<Vector2>().x;
+    }
+
+    public void OnMove(InputValue input)
+    {
+        speedMove = input.Get<float>();
     }
 
     void Rotate(float rotate)
     {
-        GameController.Instance.core.Ship.Rotate(rotate*Time.deltaTime);
+        gameController.core.Ship.Rotate(rotate*Time.deltaTime);
     }
 
     void Move(float speed)
     {
-        GameController.Instance.core.Ship.AddSpeed(speed * Time.deltaTime);
+        gameController.core.Ship.AddSpeed(speed * Time.deltaTime);
     }
 
-    void ShootGun()
+    void OnShootGun()
     {
-        GameController.Instance.core.Ship.ShootGun();
+        gameController.core.Ship.ShootGun();
     }
 
-    void ShootLaser()
+    void OnShootLaser()
     {
-        GameController.Instance.core.Ship.ShootLaser();
+        gameController.core.Ship.ShootLaser();
     }
 }

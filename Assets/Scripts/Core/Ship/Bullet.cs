@@ -7,7 +7,8 @@ using UnityEngine;
 public class Bullet : MoveController, ITimeWarp
 {
     public delegate void DestroyBullet(Bullet bullet);
-    public event DestroyBullet OnDestroy;
+    public event DestroyBullet OnDestroyUI;
+    public event DestroyBullet OnClear;
 
     public BulletType bulletType;
 
@@ -35,9 +36,15 @@ public class Bullet : MoveController, ITimeWarp
             Destroy();
     }
 
-    public void Destroy()
+    public virtual void Destroy()
     {
-        OnDestroy?.Invoke(this);
+        OnDestroyUI?.Invoke(this);
+        OnClear?.Invoke(this);
+    }
+
+    public void Clear()
+    {
+        OnClear?.Invoke(this);
     }
 }
 

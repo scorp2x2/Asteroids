@@ -40,7 +40,7 @@ public static class GlobalParametrs
     /// <summary>
     /// Скорость полёта лазера
     /// </summary>
-    public static readonly float SpeedLaser = 2000;
+    public static readonly float SpeedLaser = 3000;
 
     /// <summary>
     /// Скорость полёта астероида

@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class GameOverPanel : MonoBehaviour
 {
     public Text panelScore;
+    public GameController gameController;
+    public MainMenu mainMenu;
 
     // Update is called once per frame
     public void Show()
     {
         gameObject.SetActive(true);
-        panelScore.text = GameController.Instance.core.gameScore.ToString();
+        panelScore.text = gameController.core.gameScore.ToString();
     }
 
     public void Hide()
@@ -21,13 +23,13 @@ public class GameOverPanel : MonoBehaviour
 
     public void ButtonNewGame()
     {
-        GameController.Instance.NewGame();
+        gameController.NewGame();
         Hide();
     }
 
     public void ButtonMainMenu()
     {
-        MainMenu.Instance.Show();
+        mainMenu.Show();
         Hide();
     }
 }

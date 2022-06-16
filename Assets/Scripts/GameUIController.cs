@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class GameUIController : MonoBehaviour
 {
+    public GameController gameController;
+
     public Text scoreCount;
 
     public Transform panelLasers;
+    public Image[] imagesLaser;
 
     public Text position;
     public Text rotation;
@@ -18,25 +21,24 @@ public class GameUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var go = panelLasers.GetChild(0).gameObject;
-        for (int i = 1; i < GlobalParametrs.MaxCountLaser; i++)
-            Instantiate(go, panelLasers);
+        imagesLaser = new Image[GlobalParametrs.MaxCountLaser];
+        imagesLaser[0] = panelLasers.GetChild(0).GetComponent<Image>();
+        for (int i = 1; i < imagesLaser.Length; i++)
+            imagesLaser[i] = Instantiate(imagesLaser[0], panelLasers);
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreCount.text = GameController.Instance.core.gameScore.ToString();
+        scoreCount.text = gameController.core.gameScore.ToString();
 
-        for (int i = 0; i < panelLasers.childCount; i++)
-        {
-            panelLasers.GetChild(i).GetComponent<Image>().color = i + 1 > GameController.Instance.core.Ship.CountLaser ? Color.white : Color.red;
-        }
+        for (int i = 0; i < imagesLaser.Length; i++)
+            imagesLaser[i].color = i + 1 > gameController.core.Ship.CountLaser ? Color.white : Color.red;
 
-        position.text = $"X:{ GameController.Instance.core.Ship.Position.x} Y:{GameController.Instance.core.Ship.Position.y}";
-        rotation.text = (GameController.Instance.core.Ship.Rotation * 180 / Mathf.PI).ToString() + "°";
-        speed.text = GameController.Instance.core.Ship.Speed.ToString();
-        countLaser.text = GameController.Instance.core.Ship.CountLaser.ToString();
-        reloadLaser.text = GameController.Instance.core.Ship.TimeShootLaser.ToString();
+        position.text = $"X:{ gameController.core.Ship.Position.x} Y:{gameController.core.Ship.Position.y}";
+        rotation.text = (gameController.core.Ship.Rotation * 180 / Mathf.PI).ToString() + "°";
+        speed.text = gameController.core.Ship.Speed.ToString();
+        countLaser.text = gameController.core.Ship.CountLaser.ToString();
+        reloadLaser.text = gameController.core.Ship.TimeShootLaser.ToString();
     }
 }

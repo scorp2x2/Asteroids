@@ -21,7 +21,7 @@ public class Asteroid : Enemy
         Level = lvl;
         Speed = GlobalParametrs.SpeedAsteroid * (Level + 1);
 
-        Score = GlobalParametrs.ScoreAsteroid*(Level + 1);
+        Score = GlobalParametrs.ScoreAsteroid * (Level + 1);
         Rotation = Random.Range(0, Mathf.PI * 2);
     }
 

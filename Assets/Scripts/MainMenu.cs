@@ -5,14 +5,8 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    public static MainMenu Instance;
-
     public GameObject panelGame;
-
-    void Awake()
-    {
-        Instance = this;
-    }
+    public GameController gameController;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +23,7 @@ public class MainMenu : MonoBehaviour
     public void ButtonNewGame()
     {
         panelGame.SetActive(true);
-        GameController.Instance.NewGame();
+        gameController.NewGame();
         gameObject.SetActive(false);
     }
 

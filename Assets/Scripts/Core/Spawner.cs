@@ -71,19 +71,28 @@ public class Spawner : ITimeWarp
         }
     }
 
-    public void Clear()
-    {
-        while (Enemies.Count != 0)
-            Enemies[0].Destroy();
-    }
-
     public void SpawnAsteroid(int lvl, Vector2 position)
     {
         var enemy = new Asteroid(lvl, position);
         enemy.OnSpawnAsteroid += SpawnAsteroid;
-        enemy.OnDestroyEnemy += Enemy_OnDestroyEnemy;
+        enemy.OnClearEnemy += Enemy_OnDestroyEnemy;
         Enemies.Add(enemy);
         OnSpawnEnemy?.Invoke(enemy);
+    }
+
+    public void SpawnSaucer(Vector2 position)
+    {
+        var enemy = new Saucer(position, ship);
+        enemy.OnClearEnemy += Enemy_OnDestroyEnemy;
+        Enemies.Add(enemy);
+        OnSpawnEnemy?.Invoke(enemy);
+    }
+
+    public void Clear()
+    {
+        foreach (var item in Enemies)
+            item.Clear();
+        Enemies.Clear();
     }
 
     private void Enemy_OnDestroyEnemy(Enemy enemy)
@@ -91,13 +100,4 @@ public class Spawner : ITimeWarp
         OnAddScore(enemy.Score);
         Enemies.Remove(enemy);
     }
-
-    public void SpawnSaucer(Vector2 position)
-    {
-        var enemy = new Saucer(position, ship);
-        enemy.OnDestroyEnemy += Enemy_OnDestroyEnemy;
-        Enemies.Add(enemy);
-        OnSpawnEnemy?.Invoke(enemy);
-    }
 }
-

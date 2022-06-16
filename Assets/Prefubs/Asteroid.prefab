@@ -238,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1134334174097624196
 RectTransform:
   m_ObjectHideFlags: 0
@@ -686,7 +686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0ab742f69f8c644be5d7ca6a5e092c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 2
   largeAsteroids:
   - {fileID: 2350435268536566841}
   - {fileID: 7875302489333833940}
@@ -699,11 +698,6 @@ MonoBehaviour:
   - {fileID: 693095532751764422}
   - {fileID: 3486416664104847021}
   - {fileID: 3985385569168310003}
-  level: 3
-  speeds:
-  - 0.2
-  - 0.4
-  - 0.7
 --- !u!50 &2979834871555922218
 Rigidbody2D:
   serializedVersion: 4
